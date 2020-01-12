@@ -1,4 +1,4 @@
-# GmailBomber
+# mail-bomber
 
 apt upgrade
 apt update
